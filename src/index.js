@@ -55,7 +55,7 @@ export const createStructure = async () => {
     message varchar(10000) not null,
     userid integer not null,
     bookid integer not null,
-    foreign key(userid) references user(id) on delete cascade,
+    foreign key(userid) references users(id) on delete cascade,
     foreign key(bookid) references books(id) on delete cascade);`
   );
 
