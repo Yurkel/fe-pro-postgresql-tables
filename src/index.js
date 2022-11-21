@@ -37,29 +37,26 @@ export const createStructure = async () => {
   await client.query(
     `create table books (id serial primary key not null,
     title varchar(30) not null,
-    userid intager not null,
-    authorid intager not null,
-    categoryid intager not null,
+    userid integer not null,
+    authorid integer not null,
+    categoryid integer not null,
     foreign key(userid) references users(id) on delete cascade,
     foreign key(authorid) references authors(id) on delete cascade,
-    foreign key(categoryid) references categories(id) on delete cascade,
-    );`
+    foreign key(categoryid) references categories(id) on delete cascade);`
   );
   await client.query(
     `create table descriptions (id serial primary key not null,
     description varchar(10000) not null,
-    bookid intager not null,
-    foreign key(bookid) references books(id) on delete cascade unique
-    );`
+    bookid integer not null unique,
+    foreign key(bookid) references books(id) on delete cascade);`
   );
   await client.query(
     `create table reviews (id serial primary key not null,
     message varchar(10000) not null,
-    userid intager not null,
-    bookid intager not null,
+    userid integer not null,
+    bookid integer not null,
     foreign key(userid) references user(id) on delete cascade,
-    foreign key(bookid) references books(id) on delete cascade,
-    );`
+    foreign key(bookid) references books(id) on delete cascade);`
   );
 
   client.end();
